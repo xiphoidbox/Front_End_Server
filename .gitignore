@@ -1,0 +1,13 @@
+# Ignore directories
+dbadmin/
+node_modules/
+logs/
+temp/
+
+# Ignore sensitive configuration files
+*.config
+*.env
+
+# System files
+.DS_Store
+Thumbs.db
