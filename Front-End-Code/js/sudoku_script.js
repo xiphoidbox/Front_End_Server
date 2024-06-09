@@ -1,0 +1,141 @@
+document.addEventListener('mousemove', function(e) {
+    var gradientBar = document.querySelector('.static_gradient-bar');
+    var width = window.innerWidth;
+    var mouseX = e.clientX;
+    var percentage = mouseX / width * 100;
+    gradientBar.style.background = 'linear-gradient(to right, black 0%, black ' + (percentage - 20) + '%, #202a2d ' + percentage + '%, black ' + (percentage + 20) + '%, black 100%)';
+});
+
+class SudokuGridGenerator {
+    constructor() {
+        this.grid = new Array(81).fill(null);
+        this.originalGrid = [];
+        this.clues = new Array(81).fill(false);
+        this.stepCount = 0;
+        this.timeouts = [];
+        this.cancelDisplay = false;
+    }
+
+    generateGrid() {
+        this.timeouts.forEach(clearTimeout);
+        this.timeouts = [];
+        this.fillGrid(0);
+        this.removeNumbers();
+        this.originalGrid = [...this.grid];
+        this.stepCount = 0;
+        document.getElementById('stepCounter').textContent = 'Steps: 0'; 
+        document.getElementById('solve').disabled = false;
+        return this.grid;
+    }
+
+    fillGrid(position) {
+        if (position === 81) return true;
+        let row = Math.floor(position / 9);
+        let col = position % 9;
+
+        if (this.grid[position] !== null) return this.fillGrid(position + 1);
+
+        let numbers = this.shuffleArray([...Array(9).keys()].map(x => x + 1));
+        for (let number of numbers) {
+            if (this.isValidPlacement(this.grid, number, row, col)) {
+                this.grid[position] = number;
+                if (this.fillGrid(position + 1)) return true;
+            }
+        }
+
+        this.grid[position] = null;
+        return false;
+    }
+
+    isValidPlacement(grid, number, row, col) {
+        for (let i = 0; i < 9; i++) {
+            const boxRow = 3 * Math.floor(row / 3) + Math.floor(i / 3);
+            const boxCol = 3 * Math.floor(col / 3) + i % 3;
+            if (number === grid[row * 9 + i] || number === grid[i * 9 + col] || number === grid[boxRow * 9 + boxCol]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    removeNumbers() {
+        let positions = [...Array(81).keys()];
+        positions = this.shuffleArray(positions);
+        positions.slice(0, 50).forEach(index => {
+            this.grid[index] = null;
+            this.clues[index] = false;
+        });
+        this.grid.forEach((value, index) => {
+            if (value !== null) this.clues[index] = true;
+        });
+    }
+
+    solveSudoku(grid, cell = 0) {
+        if (cell === 81 || this.cancelDisplay) return true;
+        let row = Math.floor(cell / 9);
+        let col = cell % 9;
+        if (grid[cell] !== null) return this.solveSudoku(grid, cell + 1);
+
+        for (let num = 1; num <= 9; num++) {
+            if (this.isValidPlacement(grid, num, row, col)) {
+                grid[cell] = num;
+                this.updateCell(row, col, num, true);
+                if (this.solveSudoku(grid, cell + 1)) return true;
+                grid[cell] = null;
+                this.updateCell(row, col, null, true);
+            }
+        }
+        return false;
+    }
+
+    updateCell(row, col, num, isTrial) {
+        this.stepCount++;
+        document.getElementById('stepCounter').textContent = `Steps: ${this.stepCount}`;
+
+        let delay = this.stepCount * 5 ; 
+        let timeout = setTimeout(() => {
+            const cellElement = document.querySelector(`#sudokuGrid tr:nth-child(${row + 1}) td:nth-child(${col + 1})`);
+            cellElement.textContent = num === null ? '' : num;
+            cellElement.style.color = isTrial ? 'red' : 'blue';
+        }, delay);
+        this.timeouts.push(timeout);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sudoku = new SudokuGridGenerator();
+
+    document.getElementById('generate').addEventListener('click', function() {
+        let grid = sudoku.generateGrid();
+        displayGrid(grid);
+    });
+
+    document.getElementById('solve').addEventListener('click', function() {
+        sudoku.solveSudoku([...sudoku.grid]);
+        document.getElementById('solve').disabled = true;
+    });
+
+    function displayGrid(grid) {
+        const container = document.getElementById('sudokuGrid');
+        container.innerHTML = '';
+        const table = document.createElement('table');
+        for (let i = 0; i < 9; i++) {
+            const row = document.createElement('tr');
+            for (let j = 0; j < 9; j++) {
+                const cell = document.createElement('td');
+                cell.textContent = grid[i * 9 + j] === null ? '' : grid[i * 9 + j];
+                row.appendChild(cell);
+            }
+            table.appendChild(row);
+        }
+        container.appendChild(table);
+    }
+});

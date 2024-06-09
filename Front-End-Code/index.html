@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="menu-bar">
+      <div class="logo-wrapper">
+        <a href="javascript:void(0);" onclick="window.location.reload();">
+          <img src="images/Logo.png" alt="Logo" class="menu-logo">
+        </a>
+      </div>
+      <div class="button-wrapper">
+        <button onclick="window.location.reload();">
+          <span>Home</span>
+        </button>
+        <div class="dropdown">
+          <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Projects </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="portfolio_website.html">Portfolio Website</a>
+            <a class="dropdown-item" href="mask_detector.html">Covid Mask Detector</a>
+            <a class="dropdown-item" href="spam_detector.html">Email Spam Detector</a>
+	    <a class="dropdown-item" href="sudoku.html">Sudoku Solver</a>
+            <a class="dropdown-item" href="weather.html">Weather Application</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gradient-bar"></div>
+    <div class="half-left"></div>
+    <div class="half-right"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-6 about-me-container vertical-spacing">
+          <div id="about-me-cover" class="about-me-cover"></div>
+          <div class="about-me-content">
+            <h2>About Me</h2>
+            <p class="bio-introduction">I am a recently graduated Computer Science student from UTSA with a passion for crafting websites and solving complex problems. I bring a distinct blend of vision to every project, and I possess the ability to adapt and effectively tackle challenges presented to me. My goal is to exceed expectations by leveraging my technical expertise and creative problem-solving skills to develop innovative solutions. Eager to apply my knowledge in real-world scenarios, I am committed to continuous learning and growth in my field, contributing meaningfully to a team that values progress and excellence.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 about-me-container vertical-spacing">
+          <div class="map-container">
+            <div class="center-wrapper">
+              <div class="title-container">Located In</div>
+            </div>
+            <div id="map-cover" class="map-cover"></div>
+            <div id="map" class="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-nav-container swiper1">
+      <div class="swiper-container mySwiper1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/SQL Logo.png" alt="SQL">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/Python Logo.png" alt="Python">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/HTML Logo.png" alt="HTML">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/CSS Logo.png" alt="CSS">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/JavaScript Logo.png" alt="JavaScript">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/PHP Logo.png" alt="PHP">
+          </div>
+        </div>
+        <div class="swiper-button-next swiper-button-next-1"></div>
+        <div class="swiper-button-prev swiper-button-prev-1"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="text-label swiper1-label">Languages used for this website</div>
+    </div>
+    <div class="swiper-nav-container swiper2">
+      <div class="swiper-container mySwiper2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/Java Logo.png" alt="Java">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/Lua Logo.png" alt="Lua">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/CSharp Logo.png" alt="C#">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/C Logo.png" alt="C">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/Bash Logo.png" alt="Bash">
+          </div>
+        </div>
+        <div class="swiper-button-next swiper-button-next-2"></div>
+        <div class="swiper-button-prev swiper-button-prev-2"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      <div class="text-label swiper2-label">Languages previously worked with</div>
+    </div>
+    <div class="contact-header">
+      <h2>CONTACT</h2>
+      <div class="header-underline"></div>
+    </div>
+    <div class="contact-form">
+      <div class="contact-text">
+        <p class="contact-text">Feel free to contact me by submitting the form below or emailing me at <a href="mailto:alebermea10@outlook.com">alebermea10@outlook.com</a>. </p>
+      </div>
+      <form action="contact.php" method="post">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+        <label for="phone" class="form-label">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="Phone Number (OPTIONAL)" pattern="\d{10}" title="Phone number must be 10 digits">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter Your Email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Please include a domain following the '@' for example: user@example.com" required>
+        <label for="message" class="form-label">Message</label>
+        <textarea id="message" name="message" placeholder="Enter Your Message" required></textarea>
+        <button type="submit" name="submit" value="submit">SUBMIT</button>
+      </form>
+    </div>
+    <div class="svg-container">
+      <svg viewBox="0 0 1500 240" xmlns="http://www.w3.org/2000/svg">
+	<!-- Letter 'W' --->
+        <line class="line" x1="110" y1="40" x2="150" y2="200" stroke="black" />
+        <line class="line" x1="150" y1="200" x2="210" y2="80" stroke="black" style="animation-delay: 0.3s;" />
+        <line class="line" x1="210" y1="80" x2="270" y2="200" stroke="black" style="animation-delay: 0.6s;" />
+        <line class="line" x1="270" y1="200" x2="310" y2="40" stroke="black" style="animation-delay: 0.9s;" />
+        <!-- Letter 'E' -->
+        <line class="line" x1="360" y1="40" x2="360" y2="200" stroke="black" style="animation-delay: 0s;" />
+        <line class="line" x1="360" y1="40" x2="480" y2="40" stroke="black" style="animation-delay: .3s;" />
+        <line class="line" x1="360" y1="120" x2="460" y2="120" stroke="black" style="animation-delay: .6s;" />
+        <line class="line" x1="360" y1="200" x2="480" y2="200" stroke="black" style="animation-delay: .9s;" />
+        <!-- Letter 'L' -->
+        <line class="line" x1="535" y1="40" x2="535" y2="200" stroke="black" />
+        <line class="line" x1="535" y1="200" x2="655" y2="200" stroke="black" style="animation-delay: .9s;" />
+        <!-- Letter 'C' -->
+        <g transform="translate(680, 30) scale(2.5)">
+          <path class="dynamic-stroke" d="M 51.201 62.701 L 51.201 70.501 Q 47.201 72.001 42.951 72.701 A 47.684 47.684 0 0 1 39.225 73.154 Q 37.217 73.324 34.933 73.377 A 91.919 91.919 0 0 1 32.801 73.401 A 43.764 43.764 0 0 1 24.834 72.714 Q 20.043 71.827 16.169 69.794 A 26.102 26.102 0 0 1 14.601 68.901 A 27.62 27.62 0 0 1 3.824 56.488 A 33.498 33.498 0 0 1 3.651 56.101 A 41.708 41.708 0 0 1 0.75 46.155 Q 0.002 41.684 0.001 36.621 A 70.154 70.154 0 0 1 0.001 36.601 A 50.241 50.241 0 0 1 0.927 26.736 A 38.801 38.801 0 0 1 3.951 17.551 Q 7.901 9.301 15.601 4.651 A 31.425 31.425 0 0 1 25.908 0.768 A 43.706 43.706 0 0 1 34.301 0.001 A 51.284 51.284 0 0 1 44.179 0.908 A 38.359 38.359 0 0 1 54.001 4.201 L 50.401 11.801 A 51.67 51.67 0 0 0 46.217 10.125 A 65.004 65.004 0 0 0 43.051 9.101 Q 39.001 7.901 34.201 7.901 A 27.624 27.624 0 0 0 26.265 8.984 A 21.076 21.076 0 0 0 16.101 15.601 A 25.917 25.917 0 0 0 10.867 25.685 Q 9.8 29.527 9.566 34.089 A 51.079 51.079 0 0 0 9.501 36.701 Q 9.501 46.864 13.092 53.786 A 24.53 24.53 0 0 0 15.651 57.751 A 19.738 19.738 0 0 0 26.993 64.739 A 31.154 31.154 0 0 0 34.101 65.501 A 49.467 49.467 0 0 0 40.599 65.087 A 43.049 43.049 0 0 0 43.001 64.701 Q 47.201 63.901 51.201 62.701 Z" fill="#f8f8f8" stroke="black" vector-effect="non-scaling-stroke">
+            <animate attributeName="stroke-dasharray" from="0, 200" to="200, 0" begin="1.3s" dur="3s" fill="freeze" />
+            <animate attributeName="stroke-dashoffset" from="310" to="0" begin="0s" dur="4.6s" fill="freeze" />
+          </path>
+        </g>
+        <!-- Letter 'O' -->
+        <circle class="circle" cx="925" cy="120" r="80" stroke="black" fill="none" />
+        <!-- Letter 'M' -->
+        <line class="line" x1="1055" y1="40" x2="1055" y2="200" stroke="black" style="animation-delay: 0s;" />
+        <line class="line" x1="1055" y1="40" x2="1135" y2="120" stroke="black" style="animation-delay: 0.3s;" />
+        <line class="line" x1="1135" y1="120" x2="1215" y2="40" stroke="black" style="animation-delay: 0.6s;" />
+        <line class="line" x1="1215" y1="40" x2="1215" y2="200" stroke="black" style="animation-delay: 0.9s;" />
+        <!-- Letter 'E' -->
+        <line class="line" x1="1270" y1="40" x2="1270" y2="200" stroke="black" style="animation-delay: 0s;" />
+        <line class="line" x1="1270" y1="40" x2="1390" y2="40" stroke="black" style="animation-delay: 0.3s;" />
+        <line class="line" x1="1270" y1="120" x2="1370" y2="120" stroke="black" style="animation-delay: 0.6s;" />
+        <line class="line" x1="1270" y1="200" x2="1390" y2="200" stroke="black" style="animation-delay: 0.9s;" />
+      </svg>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="js/index_script.js"></script>
+  </body>
+</html>

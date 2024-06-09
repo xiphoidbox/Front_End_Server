@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/mask_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="static_menu-bar">
+        <div class="logo-wrapper">
+            <a href="http://alejandrobermea.com">
+                <img src="images/Logo.png" alt="Logo" class="menu-logo">
+            </a>
+        </div>
+        <div class="button-wrapper">
+            <a href="http://alejandrobermea.com">
+                <button>
+                    <span>Home</span>
+                </button>
+            </a>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Projects </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="portfolio_website.html">Portfolio Website</a>
+                  <a class="dropdown-item" href="mask_detector.html">Covid Mask Detector</a>
+                  <a class="dropdown-item" href="spam_detector.html">Email Spam Detector</a>
+                  <a class="dropdown-item" href="sudoku.html">Sudoku Solver</a>
+                  <a class="dropdown-item" href="weather.html">Weather Application</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="static_gradient-bar"></div>
+    <div class="wrapper">
+        <div class="container">
+            <div id="dragDropArea">
+                <p style="font-size: 19px;">
+                    <span class="highlight">Drag and drop</span> your image here, or <span class="highlight">click</span> to select a file.
+                </p>
+                <input type="file" name="image" accept="image/jpeg, image/png" required style="display: none;">
+                <img id="previewImage" src="" alt="Image preview" style="display: none;">
+                <div class="spinner" id="spinner"></div>
+            </div>
+            <div class="button-container">
+                <div class="warning"> The model may confuse facial hair for covid masks. </div>
+		<button class="link-button" onclick="window.open('https://github.com/xiphoidbox/Node_Server')">Mask Model Code</button>
+                <button class="link-button" onclick="window.open('https://www.kaggle.com/datasets/omkargurav/face-mask-dataset')">Mask Model Dataset</button>
+                <button class="link-button" onclick="window.open('https://www.google.com/search?tbm=isch&q=face+mask+on')">People with Covid Masks</button>
+                <button class="link-button" onclick="window.open('https://www.google.com/search?tbm=isch&q=female+looking+at+camera')">People without Covid Masks</button>
+                <button class="link-button" id="submitButton">Analyze Image</button>
+                <div id="result-message" class="result-message"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/mask_script.js"></script>
+</body>
+</html>

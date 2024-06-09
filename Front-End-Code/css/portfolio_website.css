@@ -1,0 +1,156 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2eeef;
+    color: #333;
+}
+
+.static_gradient-bar {
+  transform: translateY(0%);
+  transition: transform 1.6s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right, #000000, black, #000000);
+  z-index: 10;
+}
+
+.static_menu-bar {
+  transform: translate(0%, 10px);
+  transition: transform 1.6s ease;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+  z-index: 9;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.static_menu-bar button {
+  font-size: 20px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  margin-right: 70px;
+}
+
+.static_menu-bar button span {
+  position: relative;
+  display: inline-block;
+}
+
+.static_menu-bar button span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  transition: all 0.3s ease;
+  color: #202a2d;
+}
+
+.static_menu-bar button:hover span::after,
+.menu-bar button:focus span::after {
+  width: 100%;
+  left: 0%;
+}
+
+.static_menu-bar button:not(:hover) span::after {
+  width: 0%;
+  left: 50%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.logo-wrapper {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar .logo-wrapper .menu-logo,
+.static_menu-bar .logo-wrapper .menu-logo {
+  width: 100px;
+  height: auto;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  color: white;
+  border-radius: 4px;
+}
+
+.dropdown-menu {
+  background-color: black;
+}
+
+.dropdown-item {
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #202a2d;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.custom-btn {
+  background-color: black;
+  color: white;
+  font-size: 22px;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.custom-btn:hover,
+.custom-btn:focus {
+  color: #e6463a;
+}
+
+@media (max-width: 1020px) {
+  .static_menu-bar button {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 540px) {
+  .custom-btn {
+    height: 100px; 
+    font-size: 24px; 
+  }
+}
+
+@media (max-width: 440px) {
+  .custom-btn {
+    height: 150px;
+    font-size: 24px;
+  }
+}

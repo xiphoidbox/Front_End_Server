@@ -1,0 +1,167 @@
+.static_gradient-bar {
+  transform: translateY(0%);
+  transition: transform 1.6s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to right, #000000, black, #000000);
+  z-index: 10;
+}
+
+.static_menu-bar {
+  transform: translate(0%, 10px);
+  transition: transform 1.6s ease;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+  z-index: 9;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.static_menu-bar button {
+  font-size: 20px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  margin-right: 70px;
+}
+
+.static_menu-bar button span {
+  position: relative;
+  display: inline-block;
+}
+
+.static_menu-bar button span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  transition: all 0.3s ease;
+  color: #202a2d;
+}
+
+.static_menu-bar button:hover span::after,
+.menu-bar button:focus span::after {
+  width: 100%;
+  left: 0%;
+}
+
+.static_menu-bar button:not(:hover) span::after {
+  width: 0%;
+  left: 50%;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+.logo-wrapper {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar .logo-wrapper .menu-logo,
+.static_menu-bar .logo-wrapper .menu-logo {
+  width: 100px;
+  height: auto;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  color: white;
+  border-radius: 4px;
+}
+
+.dropdown-menu {
+  background-color: black;
+}
+
+.dropdown-item {
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #202a2d;
+  color: white;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#generate {
+    background-color: #007bff;
+    color: white;
+}
+
+#generate:hover {
+    background-color: #0056b3;
+}
+
+#solve {
+    background-color: #6c757d;
+    color: white;
+}
+
+#solve:hover {
+    background-color: #5a6268;
+}
+
+#sudokuGrid {
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+td {
+    border: 1px solid #333;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+tr:nth-child(3n) td {
+    border-bottom: 3px solid black;
+}
+
+td:nth-child(3n) {
+    border-right: 3px solid black;
+}
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

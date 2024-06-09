@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/spam_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="static_menu-bar">
+        <div class="logo-wrapper">
+            <a href="http://alejandrobermea.com">
+                <img src="images/Logo.png" alt="Logo" class="menu-logo">
+            </a>
+        </div>
+        <div class="button-wrapper">
+            <a href="http://alejandrobermea.com">
+                <button>
+                    <span>Home</span>
+                </button>
+            </a>
+            <div class="dropdown">
+                <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Projects 
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="portfolio_website.html">Portfolio Website</a>
+                  <a class="dropdown-item" href="mask_detector.html">Covid Mask Detector</a>
+                  <a class="dropdown-item" href="spam_detector.html">Email Spam Detector</a>
+                  <a class="dropdown-item" href="sudoku.html">Sudoku Solver</a>
+                  <a class="dropdown-item" href="weather.html">Weather Application</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="static_gradient-bar"></div>
+    <div class="spamContainer">
+        <div class="wrapper">
+            <textarea id="userInput" class="text-input" placeholder="Enter text here"></textarea>
+            <button class="link-button" onclick="window.open('https://github.com/xiphoidbox/Node_Server/tree/main')">Spam Detector Code</button>
+            <button class="link-button" onclick="window.open('https://docs.google.com/spreadsheets/d/11c81Bo4R-bEbZIArVJvC_7SjwXcrbHrGD4MklMVYnfg/edit?usp=sharing')">Spam Detector Database</button>
+            <button class="link-button" id="analyzeButton">Analyze</button>
+        </div>
+        <div class="spam-words-wrapper">
+            <div class="liveTitle">Words that trigger the spam detection</div>
+            <div class="list-wrapper" id="spamWordsLive"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="js/spam_script.js"></script>
+</body>
+</html>
