@@ -4,7 +4,6 @@ This repository contains the front-end code for a web application that includes 
 
 ## Structure
 
-	@@ -15,17 +15,18 @@ The front-end structure is divided into several directories and files, each serv
 - **index.html**: The main entry point of the web application, the homepage.
 - **mask_detector.html**: The web interface for the mask detection service.
 - **spam_detector.html**: The web interface for the spam detection service.
