@@ -8,6 +8,40 @@ function scrollToTop() {
 
 document.addEventListener('DOMContentLoaded', function() {
     scrollToTop();
+    loadGoogleMapsAPI(); // Function to load the Google Maps API dynamically
+
+    var swiper2 = new Swiper(".mySwiper2", {
+        width: 800,
+        slidesPerView: 3,
+        spaceBetween: 0,
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next-2",
+            prevEl: ".swiper-button-prev-2",
+        },
+        autoplay: {
+            delay: 8000,
+            reverseDirection: true,
+        },
+    });
+
+    var initialAutoplayDelay = 4000;
+
+    setTimeout(function() {
+        var swiper1 = new Swiper(".mySwiper1", {
+            width: 800,
+            slidesPerView: 3,
+            spaceBetween: 0,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next-1",
+                prevEl: ".swiper-button-prev-1",
+            },
+            autoplay: {
+                delay: 8000,
+            },
+        });
+    }, initialAutoplayDelay);
 });
 
 let myMap;
@@ -16,7 +50,6 @@ var revealMapTimeout;
 
 function initMap() {
     const position = { lat: 29.4241, lng: -98.4936 };
-
     myMap = new google.maps.Map(document.getElementById("map"), {
         zoom: 10,
         center: position,
@@ -77,42 +110,43 @@ function scrollHandler() {
     var aboutMeCover = document.querySelector('.about-me-cover');
     var aboutMeContainer = document.querySelector('.about-me-container');
     var mapContainer = document.querySelector('.map-container');
-if (window.scrollY > 0) {
-    if (!document.body.classList.contains('scrolled')) {
-        document.body.classList.add('scrolled');
-        startMovingContent();
 
-        disableScroll();
-        setTimeout(enableScroll, 2000);
-        svgElement.style.opacity = 0;
-        svgElement.style.transition = 'opacity 1.0s cubic-bezier(0.4, 0, 0.4, 1)';
+    if (window.scrollY > 0) {
+        if (!document.body.classList.contains('scrolled')) {
+            document.body.classList.add('scrolled');
+            startMovingContent();
+            disableScroll();
+            setTimeout(enableScroll, 2000);
+            svgElement.style.opacity = 0;
+            svgElement.style.transition = 'opacity 1.0s cubic-bezier(0.4, 0, 0.4, 1)';
+
+            clearTimeout(revealMapTimeout);
+            revealMapTimeout = setTimeout(() => {
+                mapCover.style.transform = 'translateX(100%)';
+                aboutMeCover.style.transform = 'translateX(-100%)';
+            }, 1500);
+        }
+    } else {
+        document.body.classList.remove('scrolled');
+        resetContentPosition();
+
+        svgElement.style.opacity = 1;
+        svgElement.style.transition = 'opacity 1.0s cubic-bezier(1, 0, 1, 1)';
 
         clearTimeout(revealMapTimeout);
-        revealMapTimeout = setTimeout(() => {
-            mapCover.style.transform = 'translateX(100%)';
-            aboutMeCover.style.transform = 'translateX(-100%)';
-        }, 1500);
+        mapCover.style.transition = 'transform 0.5s ease';
+        mapCover.style.transform = 'translateX(0)';
+        aboutMeCover.style.transition = 'transform 0.5s ease';
+        aboutMeCover.style.transform = 'translateX(0)';
+        if (swiperNav1 && swiperNav2) {
+            swiperNav1.style.opacity = 0;
+            swiperNav1.style.transform = 'translateX(40vw)';
+            swiperNav2.style.opacity = 0;
+            swiperNav2.style.transform = 'translateX(-40vw)';
+        }
     }
-} else {
-    document.body.classList.remove('scrolled');
-    resetContentPosition();
 
-    svgElement.style.opacity = 1;
-    svgElement.style.transition = 'opacity 1.0s cubic-bezier(1, 0, 1, 1)';
-
-    clearTimeout(revealMapTimeout);
-    mapCover.style.transition = 'transform 0.5s ease';
-    mapCover.style.transform = 'translateX(0)';
-    aboutMeCover.style.transition = 'transform 0.5s ease';
-    aboutMeCover.style.transform = 'translateX(0)';
-    if (swiperNav1 && swiperNav2) {
-        swiperNav1.style.opacity = 0;
-        swiperNav1.style.transform = 'translateX(40vw)';
-        swiperNav2.style.opacity = 0;
-        swiperNav2.style.transform = 'translateX(-40vw)';
-    }
-}
-            if (window.scrollY >= 600) {
+    if (window.scrollY >= 600) {
         if (swiperNav1 && swiperNav2) {
             swiperNav1.style.opacity = 1;
             swiperNav1.style.transform = 'translateX(0)';
@@ -135,46 +169,22 @@ window.addEventListener('scroll', scrollHandler);
 window.initMap = initMap;
 
 function loadGoogleMapsAPI() {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = '/load-google-maps'; 
-    document.head.appendChild(script);
+    fetch('https://proxy.alejandrobermea.com:3000/load-google-maps')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data && data.googleMapsApiKey) {
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${data.googleMapsApiKey}&callback=initMap`;
+                document.head.appendChild(script);
+            } else {
+                console.error('Failed to load Google Maps API key');
+            }
+        })
+        .catch(error => console.error('Error loading Google Maps:', error));
 }
-
-setTimeout(loadGoogleMapsAPI, 1000);
-
-document.addEventListener("DOMContentLoaded", function() {
-    var swiper2 = new Swiper(".mySwiper2", {
-        width: 800,
-        slidesPerView: 3,
-        spaceBetween: 0,
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next-2",
-            prevEl: ".swiper-button-prev-2",
-        },
-        autoplay: {
-            delay: 8000,
-            reverseDirection: true,
-        },
-    });
-
-    var initialAutoplayDelay = 4000;
-
-    setTimeout(function() {
-        var swiper1 = new Swiper(".mySwiper1", {
-            width: 800,
-            slidesPerView: 3,
-            spaceBetween: 0,
-            loop: true,
-            navigation: {
-                nextEl: ".swiper-button-next-1",
-                prevEl: ".swiper-button-prev-1",
-            },
-            autoplay: {
-                delay: 8000,
-            },
-        });
-    }, initialAutoplayDelay);
-});
-

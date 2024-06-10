@@ -19,15 +19,12 @@ function convertTemperatureToCelsius(temp) {
 }
 
 async function fetchApiKey() {
-    console.log('Requesting API key');
     try {
         const response = await fetch('https://proxy.alejandrobermea.com:3000/api-key');
-        console.log('Received response from server, status:', response.status);
         if (!response.ok) {
             throw new Error('Failed to fetch API key, status: ' + response.status);
         }
         const data = await response.json();
-        console.log('API Key:', data.apiKey);
         return data.apiKey;
     } catch (error) {
         console.error('Error:', error);
@@ -44,14 +41,12 @@ async function fetchWeatherAndForecast(lat, lon) {
 
         const units = 'imperial'; 
         const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-        console.log(`Fetching weather and forecast with URL: ${url}`);
 
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Failed to fetch weather data: ${response.status} ${response.statusText}`);
         }
         const data = await response.json();
-        console.log('Raw weather and forecast data:', data);
 
         forecastData = data;
         originalForecastData = JSON.parse(JSON.stringify(forecastData));
@@ -62,8 +57,6 @@ async function fetchWeatherAndForecast(lat, lon) {
         filteredForecasts = filterDailyForecasts(forecastData.list);
         forecastFahrenheit = createForecastList(filteredForecasts.slice(1, 6), true);
         forecastCelsius = createForecastList(filteredForecasts.slice(1, 6), false);
-
-        console.log('Processed weather and 5-day forecast data:', forecastData);
 
         displayCurrentWeather(weatherData);
         displayForecastWeather(forecastFahrenheit);
@@ -91,7 +84,6 @@ function initMap(lat, lon) {
 }
 
 function displayCurrentWeather(data) {
-    console.log('Displaying current weather data:', data);
     const weatherDiv = document.getElementById('currentWeather');
     if (weatherDiv) {
         const temperature = parseFloat(data.main.temp);
@@ -111,7 +103,6 @@ function displayCurrentWeather(data) {
 }
 
 function displayForecastWeather(forecasts) {
-    console.log('Displaying 5-day forecast data:', forecasts);
     const forecastDiv = document.getElementById('forecastWeather');
     if (forecastDiv) {
         forecastDiv.innerHTML = '<h2>Following 5-day forecast</h2>';
@@ -201,11 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function getLocationAndWeather() {
     if (navigator.geolocation) {
-        console.log('Attempting to retrieve location...');
         navigator.geolocation.getCurrentPosition(position => {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            console.log(`Location obtained: Latitude ${lat}, Longitude ${lon}`);
             fetchWeatherAndForecast(lat, lon);
         }, () => {
             alert('Unable to retrieve your location');
@@ -214,6 +203,7 @@ function getLocationAndWeather() {
         alert('Geolocation is not supported by this browser.');
     }
 }
+
 document.addEventListener('mousemove', function(e) {
     var gradientBar = document.querySelector('.static_gradient-bar');
     var width = window.innerWidth;
